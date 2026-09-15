@@ -41,18 +41,29 @@ document.getElementById('navToggle').addEventListener('click', () => {
 });
 
 /* --------------------------------------------------------------
-   CARTA — selección real curada, extraída en vivo el 09-09-2026
-   directo de la ficha de Rappi del local (carta completa: 90+
-   productos con precios reales). Categorías cruzadas con la
-   pestaña "Menú" de Google Maps, que muestra las mismas familias
-   de productos.
+   CARTA — carta completa real, extraída en vivo de la ficha de
+   Rappi del local (rappi.cl/restaurantes/900098632-cafe-crema-21).
+   Ampliada el 15-09-2026: antes solo se mostraba una selección
+   curada de 5 categorías con un link a "ver la carta completa en
+   Rappi"; ahora están las 93 variantes reales con precio, en las
+   mismas categorías que usa Rappi. Se dejaron fuera solo las filas
+   que eran duplicados exactos de otra fila de la propia ficha de
+   Rappi (mismo nombre/precio repetido dos veces).
 -------------------------------------------------------------- */
 const CATEGORIES = [
   { id: 'waffles', label: 'Waffles & Fondues' },
-  { id: 'dulces', label: 'Dulces' },
   { id: 'picar', label: 'Para Picar' },
-  { id: 'rolls', label: 'Rolls Destacados' },
-  { id: 'burger', label: 'Sushi Burguer & Gohan' },
+  { id: 'dulces', label: 'Dulces' },
+  { id: 'california', label: 'California Rolls' },
+  { id: 'avocado', label: 'Avocado Rolls' },
+  { id: 'salmon', label: 'Envueltos en Salmón' },
+  { id: 'cheese', label: 'Cheese Rolls' },
+  { id: 'nikkei', label: 'Nikkei Rolls' },
+  { id: 'oriental', label: 'Oriental & Tempura Rolls' },
+  { id: 'veggie', label: 'Veggie Rolls' },
+  { id: 'gohan', label: 'Gohan & Sushipleto' },
+  { id: 'burger', label: 'Sushi Burguer' },
+  { id: 'sashimi', label: 'Sashimi, Nigiri y Hosomaki' },
 ];
 
 const MENU = {
@@ -67,6 +78,19 @@ const MENU = {
     ],
     note: 'Precios reales extraídos en vivo de Rappi (09-09-2026).'
   },
+  picar: {
+    items: [
+      { n: 'California Tako', d: 'Pulpo, palta y queso crema, envuelto en sésamo o ciboulette.', p: '$4.500' },
+      { n: 'California Sake', d: 'Salmón, palta y queso crema, envuelto en sésamo o ciboulette.', p: '$4.800' },
+      { n: 'Gyozas de Cerdo (5 un.)', d: 'Al vapor o fritas. Rellenas de carne de cerdo.', p: '$3.300' },
+      { n: 'Gyozas de Pollo (5 un.)', d: 'Al vapor o fritas.', p: '$3.300' },
+      { n: 'Gyozas de Camarón (5 un.)', d: 'Servidas al vapor o fritas.', p: '$3.500' },
+      { n: 'Tempura Kids', d: 'Cubos de pollo apanado, servidos con arroz blanco y salsa unagi.', p: '$4.900' },
+      { n: 'Mozzarella Tempura (6 un.)', d: 'Bolas de mozzarella apanadas en tempura.', p: '$5.100' },
+      { n: 'Kids Teriyaki', d: 'Cubos de pollo teriyaki acompañado con papas fritas.', p: '$5.100' },
+    ],
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
+  },
   dulces: {
     items: [
       { n: 'Muffin', d: 'Muffin de vainilla con chips de chocolate de la casa, 1 pza.', p: '$2.200' },
@@ -76,36 +100,131 @@ const MENU = {
     ],
     note: 'Precios reales extraídos en vivo de Rappi (09-09-2026).'
   },
-  picar: {
+  california: {
     items: [
-      { n: 'Gyozas de Cerdo (5 un.)', d: 'Al vapor o fritas. Rellenas de carne de cerdo.', p: '$3.300' },
-      { n: 'Gyozas de Camarón (5 un.)', d: 'Servidas al vapor o fritas.', p: '$3.500' },
-      { n: 'Mozzarella Tempura (6 un.)', d: 'Bolas de mozzarella apanadas en tempura.', p: '$5.100' },
-      { n: 'Kids Teriyaki', d: 'Cubos de pollo teriyaki acompañado con papas fritas.', p: '$5.100' },
-      { n: 'California Tako', d: 'Pulpo, palta y queso crema, envuelto en sésamo o ciboulette.', p: '$4.500' },
+      { n: 'California Maki', d: 'Kanikama, queso crema y palta, envuelto en sésamo o ciboulette.', p: '$4.300' },
+      { n: 'California Tempura', d: 'Camarón tempura, palta y queso crema, envuelto en sésamo o ciboulette.', p: '$4.300' },
+      { n: 'California Ebi Cheese', d: 'Camarón, queso crema y palta, envuelto en sésamo. Decorado con ciboulette.', p: '$4.500' },
+      { n: 'California Tori', d: 'Pollo teriyaki y palta, envuelto en sésamo o ciboulette.', p: '$4.500' },
+      { n: 'Pollo Furai', d: 'Pollo, queso crema y palta, envuelto en sésamo o ciboulette.', p: '$4.700' },
     ],
-    note: 'Precios reales extraídos en vivo de Rappi (09-09-2026).'
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
   },
-  rolls: {
+  avocado: {
     items: [
-      { n: 'California Ebi Cheese', d: 'Camarón, queso crema y palta, envuelto en sésamo.', p: '$4.500' },
+      { n: 'Palmito Avocado', d: 'Palmito, queso crema y palta.', p: '$5.000' },
+      { n: 'Kanikama Cheese Roll', d: 'Kanikama, palta, queso crema y camarón.', p: '$5.000' },
+      { n: 'Avocado Ebi', d: 'Camarón, queso crema y palta.', p: '$5.200' },
+      { n: 'Ebi Cheese Roll', d: 'Camarón, queso crema y palta.', p: '$5.300' },
+      { n: 'Avocado Tori', d: 'Pollo furai, queso crema y palta, envuelto en palta, salsa unagi y toques de sésamo.', p: '$5.300' },
+      { n: 'Tempura Palta', d: 'Camarón apanado, queso y palta sobre una base crujiente.', p: '$5.500' },
+      { n: 'Tako Roll', d: 'Pulpo, queso crema y palta, cubierto con semillas de sésamo.', p: '$5.500' },
+      { n: 'Pollo Apanado', d: 'Pollo apanado cubierto con queso derretido y rodajas de palta.', p: '$5.500' },
+      { n: 'Tori Crispy', d: 'Pollo furai con queso crema y cebollín, sobre papas hilo crujientes.', p: '$5.500' },
       { n: 'Avocado (Sake)', d: 'Salmón, queso crema y palta.', p: '$5.700' },
-      { n: 'Acevichado Roll', d: 'Queso crema, palta, camarón apanado, coronado con ceviche y salsa acevichada — el más mencionado en las reseñas.', p: '$5.900' },
-      { n: 'Sake Furay', d: 'Salmón, queso, palta y huevas de pescado, en tempura.', p: '$6.800' },
-      { n: 'Nigiri Sake', d: '2 piezas de arroz cubiertas con salmón fresco.', p: '$2.500' },
-      { n: 'Sashimi Salmón', d: '7 cortes.', p: '$5.600' },
     ],
-    note: 'Selección real entre más de 60 variedades de rolls disponibles — ver carta completa en Rappi.'
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
+  },
+  salmon: {
+    items: [
+      { n: 'Palmito Sake', d: 'Roll de sushi con palmito, queso crema y palta.', p: '$5.300' },
+      { n: 'Sake Ebi Tempura', d: 'Camarón apanado, queso y palta.', p: '$5.500' },
+      { n: 'Envueltos en Salmón', d: 'Palta, kanikama, envueltos en salmón.', p: '$5.500' },
+      { n: 'Sake Ebi', d: 'Camarón, palta, queso y arroz.', p: '$5.500' },
+      { n: 'Sake Tako', d: 'Pulpo, queso y palta sobre pan tostado.', p: '$5.500' },
+      { n: 'Kanikama Sake', d: 'Kanikama, queso y palta.', p: '$5.500' },
+      { n: 'Sake Tori', d: 'Pollo apanado relleno de queso derretido y palta.', p: '$5.500' },
+      { n: 'Sake Emily', d: 'Rollos de salmón rellenos de queso crema, con palta y brotes verdes.', p: '$5.800' },
+      { n: 'Sake', d: 'Salmón, queso y cebollín.', p: '$5.800' },
+    ],
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
+  },
+  cheese: {
+    items: [
+      { n: 'Cheese Lucia', d: 'Pollo teriyaki, palta y cebollín.', p: '$5.400' },
+      { n: 'Cheese Ebi', d: 'Camarón, cebollín y queso fundido en tempura crujiente.', p: '$5.400' },
+      { n: 'Cheese Rolls', d: 'Camarón, palta y queso.', p: '$5.700' },
+      { n: 'Cheese Kani Ebi', d: 'Camarón apanado, kanikama, queso y palta.', p: '$5.700' },
+      { n: 'Cheese Tori', d: 'Pollo apanado con queso derretido, cebollín y palta.', p: '$5.800' },
+      { n: 'Cheese Sake', d: 'Salmón, palta y queso.', p: '$5.800' },
+    ],
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
+  },
+  nikkei: {
+    items: [
+      { n: 'Teriyaki Grillado', d: 'Queso crema, camarón apanado, palta, envuelto en salmón grillado con teriyaki.', p: '$5.500' },
+      { n: 'Jamaco Roll', d: 'Queso, cebollín, camarón apanado, envuelto en queso gratinado con salsa de maracuyá y camote al hilo.', p: '$5.500' },
+      { n: 'Pollo Saltado', d: 'Pollo salteado con cebolla y pimientos, acompañado de arroz blanco.', p: '$5.400' },
+      { n: 'Frutilla Roll', d: 'Queso crema, palta, camarón apanado, cubierto con frutilla y salsa de maracuyá.', p: '$5.600' },
+      { n: 'Doritos Guacamole Roll', d: 'Pollo apanado, cebollín, coronado con guacamole y doritos.', p: '$5.700' },
+      { n: 'Pulpo Nikkei', d: 'Roll de salmón apanado, queso y cebollín, envuelto en palta, con pulpo al olivo y queso gratinado.', p: '$5.700' },
+      { n: 'Emma Roll', d: 'Roll de queso, cebollín y camarón frito, coronado con tártar de salmón, palta y atún.', p: '$5.700' },
+      { n: 'Mango Roll', d: 'Queso crema, camarón apanado, envuelto en mango con salsa de maracuyá.', p: '$5.800' },
+      { n: 'Ají de Gallina Roll', d: 'Palta, camarón apanado y coronado con ají de gallina.', p: '$5.800' },
+      { n: 'Huancaína Roll', d: 'Salmón, salsa huancaína y papas al hilo.', p: '$5.800' },
+      { n: 'Plátano Roll', d: 'Queso crema y pollo furai, envuelto en tajada de plátano y salsa de maracuyá.', p: '$5.800' },
+      { n: 'Acevichado Roll', d: 'Queso crema, palta, camarón apanado, coronado con ceviche y salsa acevichada — el más mencionado en las reseñas.', p: '$5.900' },
+    ],
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
+  },
+  oriental: {
+    items: [
+      { n: 'Ebi Oriental', d: 'Camarón furai, queso crema, palta y cebollín; envuelto en pollo apanado y salsa teriyaki.', p: '$5.800' },
+      { n: 'Tuna Oriental Panko', d: 'Atún, kanikama y queso, envuelto en panko crujiente.', p: '$5.800' },
+      { n: 'Avocado Tuna Oriental', d: 'Atún, queso y camarón apanado; envuelto en panko.', p: '$5.800' },
+      { n: 'Avocado Oriental', d: 'Queso, camarón apanado y salmón; envuelto en palta, bañado en salsa acevichada.', p: '$5.900' },
+      { n: 'Sabi Oriental', d: 'Camarón furai, salmón, palta, queso crema y ciboulette; envuelto en palta, sin arroz.', p: '$6.000' },
+      { n: 'Tempura Ebi Cheese', d: 'Camarón y queso crema envueltos en masa tempura crujiente.', p: '$5.600' },
+      { n: 'Tori', d: 'Pollo furai, queso crema, palta; envuelto en pollo apanado, salsa unagi y toques de sésamo.', p: '$5.600' },
+      { n: 'Tori Panko', d: 'Pollo, queso crema y cebollín, apanado en panko y cubierto con sésamo y salsa teriyaki.', p: '$5.600' },
+      { n: 'Tropical Tempura', d: 'Pollo furai, queso crema y palta; envuelto en pollo tempura y salsa de maracuyá.', p: '$5.800' },
+      { n: 'Mizuki Roll', d: 'Salmón, camarón furai, palta, envuelto en panko, salsa unagi y toques de sésamo.', p: '$6.000' },
+      { n: 'Sake Furay', d: 'Salmón, queso, palta y huevas de pescado, en tempura.', p: '$6.800' },
+    ],
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
+  },
+  veggie: {
+    items: [
+      { n: 'Coreano Veggie', d: 'Palmito, champiñón y cebollín, envuelto en nori tempurizado.', p: '$5.000' },
+      { n: 'Hot Palmito', d: 'Palmito, queso crema, ciboulette y champiñón, envuelto en panko.', p: '$5.000' },
+      { n: 'Veggie Keto Oriental', d: 'Palmito, champiñón, palta y pepino (sin arroz), envuelto en palta.', p: '$6.300' },
+    ],
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
+  },
+  gohan: {
+    items: [
+      { n: 'Gohan Vegetariano', d: 'Palmito, champiñón, choclo, palta y sésamo.', p: '$6.000' },
+      { n: 'Gohan Salmón', d: 'Salmón, queso crema, palta, nori, sésamo, masago y cebollín.', p: '$6.500' },
+      { n: 'Gohan Tori (Base Arroz)', d: 'Pollo teriyaki, queso crema, palta, sésamo y cebollín sobre base de arroz.', p: '$6.500' },
+      { n: 'Gohan Ebi Tempura', d: 'Camarón tempura, queso crema, cebollín, sésamo y palta.', p: '$6.500' },
+      { n: 'Gohan Mizuki', d: 'Pulpo, atún, salmón, camarón, palta, cebollín y sésamo.', p: '$7.000' },
+      { n: 'Sushipleto Sake', d: 'Salmón, queso y palta.', p: '$7.500' },
+      { n: 'Sushipleto Chiken', d: 'Pollo apanado, queso y palta.', p: '$7.500' },
+    ],
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
   },
   burger: {
     items: [
+      { n: 'Veggie Burger', d: 'Palmito, queso y palta.', p: '$7.000' },
       { n: 'Sushi Burguer', d: 'Hamburguesa con champiñón, queso, palta y lechuga en pan con sésamo.', p: '$7.000' },
+      { n: 'Ebi Burger', d: 'Hamburguesa de camarón con queso cheddar, palta y salsa especial en pan brioche.', p: '$7.300' },
+      { n: 'Ebi', d: 'Camarón, queso y palta.', p: '$7.500' },
+      { n: 'Chiken Burger', d: 'Hamburguesa de pollo apanado con queso cheddar y palta en pan brioche.', p: '$7.500' },
       { n: 'Sake Burger', d: 'Hamburguesa de salmón con queso, palta, lechuga y tomate en pan con sésamo.', p: '$7.500' },
-      { n: 'Gohan Salmón', d: 'Salmón, queso crema, palta, nori, sésamo, masago y cebollín.', p: '$6.500' },
-      { n: 'Gohan Mizuki', d: 'Pulpo, atún, salmón, camarón, palta, cebollín y sésamo.', p: '$7.000' },
-      { n: 'Sushipleto Sake', d: 'Salmón, queso y palta.', p: '$7.500' },
     ],
-    note: 'Precios reales extraídos en vivo de Rappi (09-09-2026).'
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
+  },
+  sashimi: {
+    items: [
+      { n: 'Ebi Maki', d: 'Alga nori rellena con arroz y camarón.', p: '$3.000' },
+      { n: 'Kani Maki', d: 'Alga rellena con arroz, kanikama y alga verde.', p: '$3.000' },
+      { n: 'Nigiri Sake', d: '2 piezas de arroz cubiertas con salmón fresco.', p: '$2.500' },
+      { n: 'Nigiri Acevichado', d: '2 piezas de arroz cubiertas con salmón y salsa acevichada.', p: '$2.700' },
+      { n: 'Sake Maki Hosomaki', d: 'Alga rellena con arroz, salmón y palta.', p: '$3.300' },
+      { n: 'Sashimi Salmón', d: '7 cortes.', p: '$5.600' },
+      { n: 'Sashimi Atún', d: '7 cortes.', p: '$5.600' },
+    ],
+    note: 'Precios reales extraídos en vivo de Rappi (15-09-2026).'
   }
 };
 

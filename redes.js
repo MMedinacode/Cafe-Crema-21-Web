@@ -306,7 +306,7 @@
 
     var art = document.createElement('article');
     art.className = 'rd-card';
-    if (datos.fotos && datos.fotos.length) art.className += ' rd-card-ancha';
+    if ((datos.fotos && datos.fotos.length) || datos.portada) art.className += ' rd-card-ancha';
 
     var cab = document.createElement('div');
     cab.className = 'rd-cab';
@@ -473,7 +473,8 @@
       '.rd-foto{display:block;overflow:hidden;border-radius:12px;aspect-ratio:1/1;background:' + linea + ';}',
       '.rd-foto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.22,1,.36,1);}',
       'a.rd-foto:hover img{transform:scale(1.06);}',
-      '.rd-video{position:relative;display:block;overflow:hidden;border-radius:12px;aspect-ratio:16/10;}',
+      '.rd-video{position:relative;display:block;overflow:hidden;border-radius:12px;',
+      'aspect-ratio:9/16;max-width:260px;margin:0 auto;}',
       '.rd-video img{width:100%;height:100%;object-fit:cover;display:block;}',
       '.rd-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(0,0,0,.28);}',
       '.rd-play svg{width:54px;height:54px;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));}',
